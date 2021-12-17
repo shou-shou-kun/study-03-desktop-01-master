@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>eelテスト</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <h2>eelテスト</h2>
+
+        <form name="form_1" action="#">
+            読込ファイル<input id="csv_name" type="text" value="source.csv"><br>
+            検索ワード<input type="text" id="search_word" name="s_word">
+            <input type="button" id="search" value="検索"><br>
+            保存先<input type="text" id="save_path" value="D:/OneDrive/Desktop">
+        </form>
+        <div>
+            <textarea id="result" class="log-text-area"></textarea>
+        </div>
+        <script type="text/javascript" src="./eel.js"></script>
+        <script>
+            search.addEventListener('click', () => {
+              
+                if (document.form_1.s_word.value == ""){
+                    alert('未入力です。');
+                    return false;
+                }else {
+                    // const res = eel.kimetsu_search(search_word.value,csv_name.value, save_path.value)
+                    eel.kimetsu_search(search_word.value,csv_name.value, save_path.value)
+                    // console.log(res)
+                    // res_1 = eel.save_file_at_dir(save_path, csv_name)
+                    // var s_word = document.getElementById('search_word');
+                    // console.log(s_word.value); 
+                    // var save_path = document.getElementById('save_path');
+                    // console.log(save_path.value); 
+                }
+                console.log('clickしました。');
+            
+            })
+
+            eel.expose(view_log_js)
+            function view_log_js(text){
+                result.value += text + "\n"
+            }
+        </script>
+    </body>
+</html>
